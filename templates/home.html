@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Home Page </title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="nav-bar">
+        <div class="logo-outer">
+            <div class="logo-inner">
+                <img src="{{url_for('static', filename='images/logo.jpg')}}" alt="">
+            </div>
+            <span style="font-size: 30px; font-weight: bolder; line-height: 27px;">
+                File <br><span style="color: rgb(255, 47, 116);">Wizard</span>
+            </span>
+        </div>
+        <div class="nav-elements">
+            <a href="#tools">Tools</a>
+            <a href="#feature">Features</a>
+            <a href="#about">About</a>
+            <a href="#contract">Contract</a>
+            {% if session.get('User_ID') %}
+                <a href="{{ url_for('logout') }}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p style="font-size: 15px;">Logout {{name}}</p>
+                </a>
+            {% else %}
+                <a href="{{ url_for('login') }}">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <p style="font-size: 15px;">Register</p>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    <div class="top-heading-content">
+        <div class="head-content">
+            <h1>Professional Online Tool</h1>
+            <h1 style="color: #FFC107;">Made Simple</h1>
+            <p>
+                Transform your files effortlessly with our suite of professional-grade online tools <br>
+                Compress images, convert formats, remove backgrounds all in your browser<br> 
+            </p>
+        </div>
+
+        <div class="head-buttons">
+            <button class="explore-btn">Explore Tools ✦</button>
+            <button class="learn-btn">Learn More</button>
+        </div>
+    </div>
+
+
+
+
+    <div class="tools-section">
+        <div class="head2-content">
+            <h1>Our Professional Tools</h1>
+            <p id="tools">Discover our wide range of tools designed to simplify your workflow. <br> Whether you're managing documents, editing videos, or converting file formats—File Wizard makes it fast, easy, and secure.</p>
+        </div>
+
+        
+        <div class="tools-elements">
+
+
+
+            <div class="tool-1">
+
+                    <div class="tool-1-logo">
+                        <div class="tool-1-inner-logo"> 
+                            <img src="{{url_for('static', filename='images/tool5.png')}}" alt="">
+                        </div>
+                    </div>
+                    <div class="tool-1-heading">
+                        <h3>PDF Tools</h3>
+                    </div>
+                    <div class="tool-1-para">
+                        <p> Manage your PDF documents <br> like a pro. Merge, split, or remove <br> pages effortlessly—all without <br> installing any software. </p>
+                    </div>
+                    <div class="tool-1-features">
+                        <a href="{{ url_for('pdf_merge') }}">Merge PDF Files</a>
+                        <a href="{{ url_for('pdf_split') }}">Split PDF Pages </a><br><br>
+                        <a href="{{ url_for('delete_pdf_pages') }}">Remove Unwanted Pages</a>
+                    </div>
+                    <div class="tool-1-try-button">
+                    </div>
+
+            </div>
+
+
+
+
+            <div class="tool-2">
+
+                    <div class="tool-2-logo">
+                        <div class="tool-2-inner-logo"> 
+                            <img src="{{url_for('static', filename='images/tool3.jpg')}}" alt="">
+                        </div>
+                    </div>
+                    <div class="tool-2-heading">
+                        <h3>File Converter</h3>
+                    </div>
+                    <div class="tool-2-para">
+                        <p> Convert your files in seconds. <br> Switch between Word, PDF, Excel, <br> and CSV with ease using our <br> powerful file converter tools. </p>
+                    </div>
+                    <div class="tool-2-features">
+                        <a href="{{ url_for('pdf_to_word') }}">PDF to Word</a>
+                        <a href="{{ url_for('converter') }}">Word to PDF</a><br><br>
+                        <a href="{{ url_for('excel_to_csv') }}">Excel to CSV</a>
+                    </div>
+                    <div class="tool-2-try-button">
+                    </div>
+            </div>
+
+
+
+            <div class="tool-3">
+
+                <div class="tool-3-logo">
+                    <div class="tool-3-inner-logo"> 
+                        <img src="{{url_for('static', filename='images/tool4.png')}}" alt="">
+                    </div>
+                </div>
+                <div class="tool-3-heading">
+                    <h3>Video Edit Tools</h3>
+                </div>
+                <div class="tool-3-para">
+                    <p>             
+                        Edit videos with precision. <br> Trim, merge, or convert formats such <br> as MP4 to MP3 directly in your <br> browser—no downloads needed.
+                    </p>
+                </div>
+                <div class="tool-3-features">
+                    <a href="{{ url_for('trimmer') }}">Trim Video</a>
+                    <a href="{{ url_for('video_merge') }}">Merge Videos</a><br><br>
+                    <a href="{{ url_for('mp4_to_mp3') }}">MP4 → MP3</a>
+                </div>
+                <div class="tool-3-try-button">
+                </div>
+
+            </div>
+
+
+        </div>
+            <div class="error-message">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="messages"><p>** {{message}}</p></div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+    </div>
+
+
+    <div class="features-section" id="feature">
+
+        <div class="features-heading">
+            <h1>Why Choose File Wizard ?</h1>
+            <p>Experience seamless file editing with tools built for speed, privacy, <br> and cross-platform compatibility. Here's what makes us stand out.</p>
+        </div>
+
+        <div class="features-elements">
+
+
+
+            <div class="feat-1">
+                <div class="feat-1-outer-logo">
+                    <div class="feat-1-logo">
+                        <i class="fa-solid fa-shield"></i>
+                    </div>
+                </div>
+                <div class="feat-1-heading">
+                    <h1>Secure & Private</h1>
+                </div>
+                <div class="feat-1-para">
+                    <p>Your files are encrypted and never stored, ensuring complete privacy.</p>
+                </div>
+            </div>
+
+
+
+            <div class="feat-2">
+                <div class="feat-2-outer-logo">
+                    <div class="feat-2-logo">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                </div>
+                <div class="feat-2-heading">
+                    <h1>Lightning & Fast</h1>
+                </div>
+                <div class="feat-2-para">
+                    <p>Processes files instantly using advanced technology for quick results.</p>
+                </div>
+            </div>
+
+
+
+
+            <div class="feat-3">
+                <div class="feat-3-outer-logo">
+                    <div class="feat-3-logo">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                </div>
+                <div class="feat-3-heading">
+                    <h1>Offline Friendly</h1>
+                </div>
+                <div class="feat-3-para">
+                    <p>Tools can work offline—download once and use anytime without internet.</p>
+                </div>
+            </div>
+
+
+
+
+            <div class="feat-4">
+                <div class="feat-4-outer-logo">
+                    <div class="feat-4-logo">
+                        <i class="fa-solid fa-display"></i>
+                    </div>
+                </div>
+                <div class="feat-4-heading">
+                    <h1>Works Everywhere</h1>
+                </div>
+                <div class="feat-4-para">
+                    <p>Fully compatible with desktops, tablets, and mobile devices.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="footer" id="contract">
+        <div class="footer-elements">
+
+            <div class="footer-box-1">
+                <h1 style="color: aliceblue;">File <span style="color: crimson;">Wizard</span></h1>
+                <p>Smart Tools to Handle your <br>Files in Seconds</p>
+            </div>
+
+
+            <div class="footer-box-2">
+                <div class="footer-box-2-logo">
+                    <h1>FollowUs</h1>
+                    <i class="fa-brands fa-facebook" id="facebook"></i>
+                    <i class="fa-brands fa-instagram" id="instagram"></i>
+                    <i class="fa-brands fa-twitter" id="twitter"></i>
+                </div>
+            </div>
+
+
+            <div class="footer-box-2">
+                <div class="footer-box-2-logo">
+                    <h1>Contract</h1>
+                    <p class="contract-phone">📞 +91 987456321 </p>
+                    <p class="contract-email">📧 abc@gmail.com</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="footer-copy-right">
+            <p>@ 2025 File Wizard. All rights Reserved</p>
+        </div>
+    </div>
+
+
+</body>
+</html>

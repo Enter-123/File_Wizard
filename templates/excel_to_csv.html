@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='excel_to_csv.css')}}">
+</head>
+<body>
+    <div class="main-form">
+        <form action="{{url_for('excel_to_csv')}}" method="post" enctype="multipart/form-data">
+            <h1>Excel → CSV</h1>
+            <input type="file" name="file">
+            <button type="submit">Convert</button>
+        </form><br>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="messages"><p>** {{message}}</p></div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

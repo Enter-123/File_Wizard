@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(90deg, rgb(28, 146, 210), #caf5fd);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main-form{
+    height: max-content;
+    width: 40rem;
+    border: 3px dashed white;
+    background-color: rgba(255, 255, 255, 0.219);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+
+.main-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main-form form h1{
+    margin-bottom: 3rem;
+    font-family: "Poppins", sans-serif;
+    color: rgb(255, 0, 85);
+}
+
+
+.main-form form input[type="file"]{
+    width: 30rem;
+    border: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    border: 3px dotted black;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    color: #ff4800;
+}
+
+
+
+.main-form form input[type="file"]::-webkit-file-upload-button{
+    border: transparent;
+    font-family: "Poppins", sans-serif;
+    margin-right: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: crimson;
+    background-color: rgb(255, 208, 0);
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.1s ease-in-out;
+}
+
+
+
+.main-form form input[type="file"]::-webkit-file-upload-button:hover{
+    transform: scale(1.1);
+}
+
+
+
+.main-form form button{
+    margin-top: 3rem;
+    width: 9rem;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+    padding: 15px;
+    border: transparent;
+    border-radius: 10px;
+    color: rgb(153, 0, 255);
+    background: linear-gradient(90deg, #C6FFDD, #FBD786, #f7797d);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+
+.main-form form button:hover{
+    box-shadow: 0 4px 10px black;
+}
+
+
+
+
+
+
+

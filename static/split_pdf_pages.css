@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(300deg, #eaffb8, #f05053);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    margin-top: 4rem;
+    font-size: 3.3rem;
+    color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+h1 i {
+    color: #fef08a;
+}
+
+form {
+    border-radius: 20px;
+    padding: 5rem;
+    border: 5px dashed #ffffff;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="file"] {
+    padding: 2rem;
+    height: 5rem;
+    font-size: 1.4rem;
+    color: #fef08a;
+    background: transparent;
+    border: none;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    color: #ffffff;
+    margin-right: 3rem;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #00ff6a;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    transform: scale(1.1);
+}
+
+.split-btn {
+    margin-top: 3rem;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, #4f46e5, #ec4899);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.split-btn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.split-btn i {
+    color: #ffffff;
+    transition: transform 0.6s ease-in-out;
+}
+
+.split-btn:hover i {
+    transform: translateY(-15px) scale(2.1) rotate(360deg);
+    text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    color: #b3ff00;
+}
+
+.flashed {
+    margin-top: 2rem;
+    color: #ffffff;
+    font-size: 1.4rem;
+    background: rgba(239, 68, 68, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+}

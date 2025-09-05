@@ -1,0 +1,532 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+/* -----------------------------------------------------------Nav Bar Styling------------------------------------------------------------ */
+
+
+.nav-bar{
+    height: 4.5rem;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff8f;
+    z-index: 999;
+}
+
+
+.logo-outer{
+    height: 70px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+.logo-inner{
+    height: 100%;
+    width: 120px;
+    margin-left: 5rem;
+    border: 3x solid transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.logo-inner img {
+    height: 100%;
+    width: 80px;
+    border-radius: 20px;
+}
+
+
+
+.nav-elements{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 22px;
+}
+
+
+.nav-elements a{
+    position: relative;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: rgb(24, 23, 23);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+}
+
+
+.nav-elements a::before{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: rgb(255, 187, 0);
+    transition: all .2s;
+}
+
+
+.nav-elements a:hover{
+    color: rgb(0, 119, 255);
+}
+
+.nav-elements a:hover::before{
+    width: 100%;
+}
+
+/* ------------------------------------------------------Heading Content Styling------------------------------------------------------------- */
+
+
+.top-heading-content{
+    height: 35rem;
+    background: linear-gradient(90deg, #2b5876 0%, #4e4376 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.head-content{
+    height: 60%;
+}
+
+.head-buttons{
+    height: 40%;
+}
+
+
+.head-content h1 {
+    margin-top: 2rem;
+    font-size: 4rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #ffffff; 
+    font-weight: 800;
+    margin-bottom: -3rem;
+}
+
+
+.head-content p{
+    margin-top: 7rem;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    color: 	#E0E0E0;
+}
+
+
+.head-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.explore-btn{
+    color: #ffffff;
+    background: linear-gradient(90deg, hsla(58, 77%, 50%, 1) 0%, hsla(281, 95%, 52%, 1) 100%);
+    height: 4rem;
+    width: 9rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+
+.explore-btn:hover, .learn-btn:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+
+
+
+.learn-btn{
+    font-size: 1rem;
+    color: #ffffff;
+    background: transparent;
+    background-color: #ffffff2f;
+    height: 4rem;
+    width: 9rem;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+
+/* --------------------------------------Tools Sections Styling----------------------------------------------------- */
+
+
+.tools-section{
+    height: 60rem;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.head2-content{
+    height: 40%;
+}
+
+.head2-content h1{
+    font-size: 4rem;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: black; 
+    font-weight: 600;
+    padding-top: 4rem;
+}
+
+
+.head2-content p{
+    margin-top: 4rem;
+    font-size: 1.2rem;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: rgb(85, 85, 85);
+}
+
+.tools-elements{
+    height: 50%;
+}
+
+
+.tools-elements{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+
+.tool-1, .tool-2, .tool-3{
+    height: 30rem;
+    width: 22rem;
+    background-color: #ffffff;
+    border-radius: 20px;
+    border-top: 5px solid transparent;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in, border-top 0.3s ease-in;
+}
+
+.tool-3:hover,
+.tool-2:hover,
+.tool-1:hover
+{
+    transform: translateY(-10px);
+    border-top: 5px solid rgb(209, 0, 105);
+}
+
+
+.tool-3-logo, .tool-2-logo, .tool-1-logo{
+    height: 8rem;
+}
+
+
+.tool-3-heading, .tool-2-heading, .tool-1-heading{
+    height: 2rem;
+    margin-left: 30px;;
+}  
+
+
+.tool-3-heading h3, .tool-2-heading h3, .tool-1-heading h3{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+} 
+
+
+.tool-3-para, .tool-2-para, .tool-1-para{
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+
+.tool-3-features, .tool-2-features, .tool-1-features{
+    height: 8rem;
+}
+
+
+.tool-3-features a, .tool-2-features a, .tool-1-features a{
+    margin-left: 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    background: linear-gradient(90deg, #fc4a1a 0, #f7b733 75%);
+    border-radius: 20px;
+    padding: 6px;
+    color: rgb(0, 4, 255);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    transition: font-size 0.3s ease-in-out;
+}
+
+
+.tool-3-features a:hover, .tool-2-features a:hover, .tool-1-features a:hover{
+    font-size: 1.07rem;
+}
+
+
+
+.tool-3-try-button, .tool-2-try-button, .tool-1-try-button{
+    height: 4rem;
+}
+
+.tool-3-inner-logo img, .tool-2-inner-logo img, .tool-1-inner-logo img{
+    height: 80px;
+    width: 70px;
+    background-color: #ffffff;
+    margin-top: 2rem;
+    position: absolute;
+    margin-left: 30px;
+}
+
+
+.tool-3-try-button, .tool-2-try-button, .tool-1-try-button{
+    margin-left: 30px;
+}
+
+.tool-3-try-button button, .tool-2-try-button button, .tool-1-try-button button{
+    background-color: white;
+    border: none;
+    color: rgb(0, 110, 255);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+.card-button:hover{
+    color: rgb(94, 164, 255);
+}
+
+
+
+.error-message{
+    height: 10%;
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.messages{
+    font-size: 1.7rem;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #ff0000;
+    background-color: #ff8080;
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* -----------------------------------------Feature Section Styling----------------------------------------------- */
+
+
+.features-section{
+    height: 40rem;
+}
+
+
+.features-heading{
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.features-heading h1 {
+    margin-top: 2rem;
+    color: black;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+.features-heading p {
+    margin-top: 2rem;
+    color: #acabab;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+
+
+.features-elements{
+    height: 60%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.feat-4, .feat-3, .feat-2, .feat-1{
+    height: 18rem;
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.feat-4-outer-logo, .feat-3-outer-logo, .feat-2-outer-logo, .feat-1-outer-logo{
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.feat-4-logo, .feat-3-logo, .feat-2-logo, .feat-1-logo{
+    height: 4rem;
+    width: 4rem;
+    font-size: 4rem; 
+}
+
+.feat-4-logo i, .feat-3-logo i, .feat-2-logo i, .feat-1-logo i{
+    border: 3px solid transparent;
+    padding: 6px;
+    border-radius: 20px;
+    background-color: #E43636;
+    color: #F6EFD2;
+    transition: background-color 0.1s ease-in, color 0.1s ease-in;
+}
+
+
+.feat-4-logo i:hover, .feat-3-logo i:hover, .feat-2-logo i:hover, .feat-1-logo i:hover{
+    background-color: #F6EFD2;
+    color: #E43636;
+}
+
+
+.feat-4-heading, .feat-3-heading, .feat-2-heading, .feat-1-heading{
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.feat-4-heading h1, .feat-3-heading h1,  .feat-2-heading h1, .feat-1-heading h1{
+    font-size: 1.4rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+}
+
+.feat-4-para, .feat-3-para, .feat-2-para, .feat-1-para{
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* -------------------------------------------------Footer Styling--------------------------------------------------- */
+
+
+.footer{
+    height: 20rem;
+    background-color: #1e4057;
+}
+
+
+.footer-elements{
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.footer-copy-right{
+    height: 10%;
+}
+
+
+.footer-copy-right p{
+    font-size: 1rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+
+.footer-box-1, .footer-box-2{
+    margin-top: 2rem;
+}
+
+
+.footer-box-1 p{
+    margin-top: 1rem;
+    color: wheat;
+}
+
+
+.footer-box-2 h1{
+    color: whitesmoke;
+}
+
+.contract-phone, .contract-email{
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    color: rgb(180, 180, 180);
+}
+
+.footer-box-2-logo i{
+    margin-top: 1rem;
+    font-size: 2rem;
+    margin-right: 1.1rem;
+}
+
+
+
+
+#facebook:hover{
+    background-color: #E0E0E0;
+    color: rgb(0, 68, 255);
+    border-radius: 5px;
+}
+
+#instagram:hover{
+    background-color: #E0E0E0;
+    color: deeppink;
+    border-radius: 5px;
+}
+
+#twitter:hover{
+    background-color: #E0E0E0;
+    color: rgb(0, 204, 255);
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

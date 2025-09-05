@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    height: 90vh;
+    background: linear-gradient(120deg, #0b1742, #00aeff);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.outer-box{
+    margin-top: 3rem;
+    height: 30rem;
+    width: 50rem;
+    background-color: aliceblue;
+    display: flex;
+    box-shadow: 10px 16px 55px rgb(0, 0, 0);
+}
+
+.inner-left{
+    width: 60%;
+    background-color: rgb(208, 255, 0);
+    background-image: url('/static/images/login_image.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.inner-right{
+    width: 40%;
+    background-color: rgb(248, 248, 248);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+
+.ele-1{
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.inner-right .ele-1 p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: rgb(0, 131, 229);
+    font-weight: 700;
+}
+
+.ele-2{
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #b3b3b3;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+}
+
+
+.ele-3{
+    height: 11rem;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-container i {
+    position: absolute;
+    left: 10px;                
+    top: 50%;                  
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.input-container input {
+    width: 15rem;
+    padding: 10px 10px 10px 35px; 
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.ele-3 a{
+    margin-left: 8rem;
+    text-decoration: none;
+    color: #888;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ele-4{
+    height: 7rem;
+}
+
+.ele-4 button{
+    padding: 10px 35px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: aliceblue;
+    font-weight: bold;
+    background: linear-gradient(to right, #0b0c2a, #007bff);
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.ele-4 button:hover {
+    background: linear-gradient(to right, #05051a, #0056b3);
+}
+
+
+.ele-4 a{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.message-box{
+    margin-top: 1rem;
+    height: 3rem;
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messages{
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.messages p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3rem;
+    color: rgb(0, 238, 255);
+    background-color: #0056b3;
+    font-weight: 700;
+    text-decoration: underline;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 3px;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='converter.css')}}">
+</head>
+<body>
+    <h2>Word to PDF</h2>
+    <form action="{{url_for('converter')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Convert</button>
+    </form><br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="messages"><p>** {{message}}</p></div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

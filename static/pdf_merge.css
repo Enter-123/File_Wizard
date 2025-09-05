@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;1,500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+body{
+    background-image: linear-gradient(-225deg, #57f0cc 0%, #EACCF8 48%, #6654F1 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+    font-size: 2.8rem;
+    margin-top: 2rem;
+    color: rgb(255, 0, 119);
+}
+
+form{
+    margin-top: 3rem;
+    border: 7px dotted rgb(98, 14, 255);
+    border-radius: 20px;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+form input[type="file"]{
+    padding: 20px;
+    font-size: 1.6rem;
+    color: crimson;
+}
+
+
+form:hover{
+    transform: translateY(-3px);
+}
+
+
+form input[type="file"]::-webkit-file-upload-button {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #002fff 0%, #8000ff 70%);
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-right: 1rem;
+    border: 2px solid white;
+}
+
+form input[type="file"]::-webkit-file-upload-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.664);
+}
+
+
+.merge-btn {
+    margin-top: 2rem;
+    padding: 15px;
+    background: linear-gradient(205deg, #4c00ff, #00fff2);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.merge-btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.479);
+}
+
+#icon1{
+    transition: transform 0.32s ease-in-out;
+}
+
+
+#icon2{
+    transition: transform 0.35s ease-in-out;
+}
+
+.merge-btn:hover #icon1{
+    transform: scale(2) translateY(-23px) translateX(30px) rotate(30deg);
+    color: rgb(4, 0, 255);
+}
+
+.merge-btn:hover #icon2{
+    transform: scale(2) translateY(23px) translateX(-30px) rotate(20deg);
+    color: rgb(255, 0, 0);
+}
+
+.flashed {
+    background: linear-gradient(135deg, #ff4d4d, #ff944d); /* Red-Orange gradient */
+    color: #fff;
+    padding: 10px;
+    margin: 1rem;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}

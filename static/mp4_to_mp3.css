@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(140deg, #ff7be5, #4558ff);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+h1{
+    margin-top: 4rem;
+    font-size: 3.3rem;
+    color: aliceblue;
+}
+
+form{
+    border-radius: 20px;
+    padding: 5rem;
+    border: 5px dashed white;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+form input[type="file"]{
+    padding: 2rem;
+    height: 5rem;
+    font-size: 1.4rem;
+    color: gold;
+}
+
+
+form input[type="file"]::-webkit-file-upload-button{
+    color: azure;
+    margin-right: 3rem;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: lightgreen;
+    cursor: pointer;
+    transition:  0.3s ease;
+}
+
+form input[type="file"]::-webkit-file-upload-button:hover{
+    transform: scale(1.1);
+}
+
+
+button{
+    margin-top: 3rem;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, rgb(0, 255, 136), rgb(119, 0, 255));
+    transition: transform 0.2s ease-in-out;
+}
+
+
+#icon{
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+button:hover #icon {
+    transform: translateY(-35px) scale(1.5);
+    text-shadow: 0px 10px 10px black;
+    color: rgb(247, 94, 124);
+}
+
+
+button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+
+.flash-message {
+    margin-top: 2rem;
+    color: rgb(255, 0, 0);
+    font-size: 1.4rem;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+

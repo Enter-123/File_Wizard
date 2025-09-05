@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='delete_pdf_pages.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <h2>PDF Pages Remover</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flashed">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    <div class="cat-a">
+    {% if total_pages is defined %}
+        <h3>Select the Pages to Delete</h3>
+            <form action="/delete_pages" method="post">
+                <input type="hidden" name="filename" value="{{ filename }}">
+                    <div class="pages">
+                        {% for i in range(total_pages) %}
+                            <div class="page">
+                                <label>
+                                    <input type="checkbox" name="pages" value="{{ i }}">
+                                    Pages {{ i+1 }}
+                                    <i class="fa-solid fa-file-lines"></i>
+                                </label>
+                            </div>
+                        {% endfor %}
+                        <input type="submit" value="Delete Selected Pages">
+                    </div>
+            </form>
+    {% else %}
+
+        <h3>Upload Pdf to Remove Pages</h3>
+            <form action="/delete_pdf_pages" method="post" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+            </form>
+    {% endif %}
+    </div>
+
+
+    <div class="cat-b">
+    {% if session.get('download_file') %}
+        <p>
+            <a href="{{url_for('download_file', filename=session['download_file'])}}">
+              <i class="fa-solid fa-download" id="icon"></i>  Click To Download 
+            </a>
+        </p>
+    {% endif %}
+    </div>
+</body>
+</html>

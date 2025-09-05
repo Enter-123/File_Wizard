@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="outer-box">
+
+        <div class="inner-left">
+        </div>
+
+        <div class="inner-right">
+            <div class="ele-1">
+                <p>Welcome to <br>Login Page</p>
+            </div>
+
+            <div class="ele-2">
+                <p>Your files, your privacy — <br>our priority. </p>
+            </div>
+
+            <div class="ele-3">
+                <form action="{{url_for('login')}}" method="post">
+                    <div class="input-container">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Username" name="email" required>
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+   
+                    <a href="">Forget Your Password ?</a>
+                </form>
+            </div>
+
+            <div class="ele-4">
+                <button type="button" onclick="document.querySelector('form').submit();">
+                    NEXT <i class="fa-solid fa-arrow-right"></i>
+                </button><br>
+                <a href="{{url_for('signup')}}">Create account</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-box">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="messages"><p>** {{message}}</p></div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

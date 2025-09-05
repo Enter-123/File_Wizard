@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='pdf_merge.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <h1>PDF Merger <span style="color: red;"><i class="fa-solid fa-file-pdf"></i> </span></h1>
+    <form action="/pdf_merge" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple>
+        <button type="submit" class="merge-btn">
+        <i class="fa-solid fa-hat-wizard" id="icon1"></i>Merge<i class="fa-solid fa-wand-sparkles" id="icon2"></i>
+        </button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flashed">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

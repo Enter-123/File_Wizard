@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Merger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='video_merge.css')}}">
+</head>
+<body>
+    <div class="upload-container">
+        <h2><i class="fa-solid fa-video"></i> Upload Videos to Merge</h2>
+        <form action="/video_merge" method="post" enctype="multipart/form-data">
+            <div class="file-input">
+                <label for="video1"><i class="fa-solid fa-film"></i> Select First Video:</label><br>
+                <input type="file" name="video1" id="video1" accept="video/*" required>
+            </div>
+            <div class="file-input">
+                <label for="video2"><i class="fa-solid fa-film"></i> Select Second Video:</label><br>
+                <input type="file" name="video2" id="video2" accept="video/*" required>
+            </div>
+            <button type="submit" class="merge-btn">
+                <i class="fa-solid fa-layer-group"></i> Merge Videos
+            </button>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flash-message">** {{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+</body>
+</html>
