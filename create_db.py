@@ -6,17 +6,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 conn = MySQLdb.connect(
-    host=os.getenv("DB_HOST", "localhost"),
-    user=os.getenv("DB_USER", "root"),
-    passwd=os.getenv("DB_PASSWORD", ""),
-    port=int(os.getenv("DB_PORT", 3306))
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    passwd=os.getenv("DB_PASSWORD"),
+    port=int(os.getenv("DB_PORT"))
 )
 
 cursor = conn.cursor()
-cursor.execute("CREATE DATABASE IF NOT EXISTS file_utility")
-cursor.execute("USE file_utility")
+cursor.execute("CREATE DATABASE IF NOT EXISTS railway")
+cursor.execute("USE railway")
 
-# Create users table
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS AppDB (
         User_ID INT AUTO_INCREMENT PRIMARY KEY,
