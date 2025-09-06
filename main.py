@@ -8,17 +8,21 @@ from pdf2docx import Converter
 from PyPDF2 import PdfReader, PdfWriter, PdfMerger
 import pikepdf
 import os, zipfile, io
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "Dev-secreat-key"
+app.secret_key = os.getenv("SECRET_KEY", "fallback-secret")
+
+app.config['MYSQL_HOST'] = os.getenv("DB_HOST")
+app.config['MYSQL_USER'] = os.getenv("DB_USER")
+app.config['MYSQL_PASSWORD'] = os.getenv("DB_PASSWORD")
+app.config['MYSQL_DB'] = os.getenv("DB_NAME")
+app.config['MYSQL_PORT'] = int(os.getenv("DB_PORT", 3306))
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Sayyed@786'
-app.config['MYSQL_DB'] = 'file_utility'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'  # fetch rows as dict
 mysql = MySQL(app)
 
 
