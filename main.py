@@ -41,7 +41,7 @@ app.config["MERGED_FOLDER"] = MERGED_FOLDER
 
 
 
-LIBRE_OFFICE = r"C:\Program Files\LibreOffice\program\soffice.exe"
+LIBRE_OFFICE = "soffice.exe"
 
 
 
@@ -659,7 +659,7 @@ def video_merge():
             vid2 = VideoFileClip(video2_path)
 
             merge = concatenate_videoclips([vid1, vid2])
-            merge.write_videofile(output_file_path)
+            merge.write_videofile(output_file_path, codec="libx264", audio_codec="aac", threads=False, logger=None)
 
             os.remove(video1_path)
             os.remove(video2_path)

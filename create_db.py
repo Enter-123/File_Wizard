@@ -2,7 +2,6 @@ import MySQLdb
 import os
 from dotenv import load_dotenv
 
-# Load .env if running locally
 load_dotenv()
 
 conn = MySQLdb.connect(
