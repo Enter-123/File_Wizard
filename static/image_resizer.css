@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ecf0f1; 
+    margin-bottom: 1.5rem;
+}
+
+form {
+    padding: 30px;
+    font-size: 0.8rem;
+    color: #ffffff;
+    border-radius: 16px;
+    background: rgba(95, 142, 189, 0.85); 
+    box-shadow: 0 6px 25px rgba(252, 28, 28, 0.504);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(175, 178, 25, 0.665);
+}
+
+label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #f39c12; 
+}
+
+input[type="file"], input[type="text"] {
+    padding: 5px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #00ff8c; 
+    background: rgba(255, 255, 255, 0.1); 
+    border: 2px solid #ffffff;
+    transition: transform 0.2s ease-in-out, border-color 0.25s ease, background-color 0.3s;
+}
+
+input[type="file"]:hover, input[type="text"]:hover {
+    transform: translateY(-3px);
+    border-color: #f39c12; 
+    background-color: rgba(243, 156, 18, 0.15); 
+}
+
+input[type="file"]:focus, input[type="text"]:focus {
+    border-color: #f39c12; 
+    background-color: rgba(243, 156, 18, 0.25); 
+    outline: none;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    margin-right: 1rem;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: none;
+    background-color: #f39c12; 
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    transform: scale(1.05);
+    background-color: #e67e22; 
+}
+
+button[type="submit"] {
+    padding: 12px 32px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #f39c12, #e67e22); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #e67e22, #f39c12); 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.flash-message {
+    margin-top: 1rem;
+    color: rgb(255, 0, 0);
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 8px;
+    width: 80%;
+    margin-left: 10%;
+}

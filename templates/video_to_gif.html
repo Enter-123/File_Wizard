@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='video_to_gif.css') }}">
+    <title>Video to GIF</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Convert Video to GIF</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li><strong>{{ category }}:</strong> {{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="video">Choose a video:</label>
+            <input type="file" name="video" accept="video/*" id="videoInput" required>
+            
+            <!-- Video Preview -->
+            <div id="videoPreviewContainer" style="display: none;">
+                <label for="videoPreview">Video Preview:</label>
+                <video id="videoPreview" controls>
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <label for="start_time">Start Time (in seconds):</label>
+            <input type="number" name="start_time" id="start_time" value="0" min="0" step="1" required>
+
+            <label for="end_time">End Time (in seconds):</label>
+            <input type="number" name="end_time" id="end_time" value="5" min="1" step="1" required>
+
+            <button type="submit">Convert to GIF</button>
+        </form>
+    </div>
+
+    <script>
+        const startTimeInput = document.getElementById("start_time");
+        const endTimeInput = document.getElementById("end_time");
+        const videoInput = document.getElementById("videoInput");
+        const videoPreviewContainer = document.getElementById("videoPreviewContainer");
+        const videoPreview = document.getElementById("videoPreview");
+        const videoSource = document.getElementById("videoSource");
+
+        // Validate GIF duration does not exceed 5 seconds
+        endTimeInput.addEventListener("input", function() {
+            const startTime = parseFloat(startTimeInput.value);
+            const endTime = parseFloat(endTimeInput.value);
+            if (endTime - startTime > 5) {
+                alert("The GIF duration cannot exceed 5 seconds.");
+                endTimeInput.value = startTime + 5;
+            }
+        });
+
+        // Video preview
+        videoInput.addEventListener("change", function () {
+            const file = videoInput.files[0];
+            if (file) {
+                videoPreviewContainer.style.display = "block";
+                const videoURL = URL.createObjectURL(file);
+                videoSource.src = videoURL;
+                videoPreview.load();
+            }
+        });
+    </script>
+</body>
+</html>

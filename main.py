@@ -9,6 +9,9 @@ from PyPDF2 import PdfReader, PdfWriter, PdfMerger
 import pikepdf
 import os, zipfile, io
 from dotenv import load_dotenv
+from PIL import Image
+from io import BytesIO
+
 
 load_dotenv()
 
@@ -39,9 +42,6 @@ app.config["OUTPUT_FOLDER"] = OUTPUT_FOLDER
 app.config["PROCESSED_FOLDER"] = PROCESSED_FOLDER
 app.config["MERGED_FOLDER"] = MERGED_FOLDER
 
-
-
-LIBRE_OFFICE = "soffice.exe"
 
 
 
@@ -123,70 +123,56 @@ def signup():
 
 
 
-@app.route("/converter", methods=["GET", "POST"])
-def converter():
+
+@app.route("/image_resizer", methods=["GET", "POST"])
+def image_resizer():
     if "User_ID" not in session:
-         flash("First Register/Login","error")
-         return redirect(url_for('home'))
-    
+        flash("First Register/Login", "error")
+        return redirect(url_for('home'))
+
     if request.method == "POST":
         file = request.files.get("file")
+        width = request.form.get("width")
+        height = request.form.get("height")
+
         if not file:
-            flash("File Not Selected")
-            return redirect(url_for("converter"))
-        
-        filename = secure_filename(file.filename)  
-        
+            flash("No file selected")
+            return redirect(url_for("image_resizer"))
 
-        if not filename.lower().endswith(".docx"):
-            flash("Selected file is Not type Docx")
-            return redirect(url_for("converter"))
-        
+        if not width or not height or not width.isdigit() or not height.isdigit():
+            flash("Please provide valid width and height values.")
+            return redirect(url_for("image_resizer"))
 
-        file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)  
+        width = int(width)
+        height = int(height)
+
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
         file.save(file_path)
 
-        name, _ = os.path.splitext(filename)   
-        output_pdf_name = f"{name}_{uuid.uuid4().hex[:6]}.pdf"
-        output_pdf_path = os.path.join(app.config["OUTPUT_FOLDER"], output_pdf_name)
-
         try:
-            subprocess.run(
-            [
-                LIBRE_OFFICE,
-                "--headless", 
-                "--convert-to", "pdf:writer_pdf_Export",
-                "--outdir", app.config["OUTPUT_FOLDER"],
-                file_path
-            ], 
-            check=True
-            )
 
-            generated_pdf = os.path.join(app.config["OUTPUT_FOLDER"], f"{name}.pdf")
-            if os.path.exists(generated_pdf):
-                os.replace(generated_pdf, output_pdf_path)
+            with Image.open(file_path) as img:
 
-                response = send_file(output_pdf_path, as_attachment=True, download_name=output_pdf_name)
+                resized_img = img.resize((width, height))
 
-                try:
-                    os.remove(file_path)
-                    os.remove(output_pdf_path)
-                except Exception:
-                    pass
 
-                return response
-            
-            else:
-                flash("Conversion Falied")
-        except subprocess.CalledProcessError as e:
-            flash(f"Conversion Error, {e}")
+                output_name = f"resized_{uuid.uuid4().hex[:6]}.png"
+                output_path = os.path.join(app.config["OUTPUT_FOLDER"], output_name)
+                resized_img.save(output_path)
+
+                resized_img.save(output_path)
+
+                return send_file(output_path, as_attachment=True, download_name=output_name)
+
         except Exception as e:
-            flash(f"Error, {str(e)}")
+            flash(f"Error: {str(e)}")
         finally:
+
             if os.path.exists(file_path):
                 os.remove(file_path)
-    
-    return render_template("converter.html")
+
+    return render_template("image_resizer.html")
 
 
 
@@ -255,65 +241,53 @@ def pdf_to_word():
 
 
 
-TRIMMED_FOLDER = os.path.join(os.getcwd(), "trimmed")
-os.makedirs(TRIMMED_FOLDER, exist_ok=True)
-
-app.config["TRIMMED_FOLDER"] = TRIMMED_FOLDER
 
 
-@app.route("/trimmer", methods=["GET", "POST"])
-def trimmer():
+
+
+
+@app.route("/video_to_gif", methods=["GET", "POST"])
+def video_to_gif():
     if "User_ID" not in session:
-        flash("First Register/Login","error")
+        flash("First Register/Login", "error")
         return redirect(url_for('home'))
-
 
     if request.method == "POST":
         video = request.files.get("video")
-        start_time = request.form.get("start_time")
-        end_time = request.form.get("end_time")
+        if not video:
+            flash("No video selected")
+            return redirect(url_for("video_to_gif"))
 
-        if not video or not start_time or not end_time:
-            flash("Please upload a video and enter both start and end times.")
-            return redirect(url_for("trimmer"))
-        
+        start_time = float(request.form["start_time"])
+        end_time = float(request.form["end_time"])
+
+        if end_time - start_time > 5:
+            flash("The GIF duration cannot exceed 5 seconds.")
+            return redirect(url_for("video_to_gif"))
+
         filename = secure_filename(video.filename)
+        file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        video.save(file_path)
 
-        video_filename = f"{filename}_{uuid.uuid4().hex[:6]}"
-        video_path = os.path.join(app.config["UPLOAD_FOLDER"], video_filename)
-        video.save(video_path)
-
-        def time_to_seconds(t):
-            parts = list(map(int, t.split(":")))
-            if len(parts) == 3:
-                return parts[0] * 3600 + parts[1] * 60 + parts[2]
-            elif len(parts) == 2:
-                return parts[0] * 60 + parts[1]
-            else:
-                return int(parts[0])
-
-        start_sec = time_to_seconds(start_time)
-        end_sec = time_to_seconds(end_time)
-
-        trimmed_filename = f"trimmed_{filename}"
-        trimmed_path = os.path.join(app.config["TRIMMED_FOLDER"], trimmed_filename)
+        output_name = f"{os.path.splitext(filename)[0]}_{uuid.uuid4().hex[:6]}.gif"
+        output_path = os.path.join(app.config["OUTPUT_FOLDER"], output_name)
 
         try:
-            clip = VideoFileClip(video_path).subclip(start_sec, end_sec)
-            clip.write_videofile(trimmed_path, codec="libx264", audio_codec="aac")
+            clip = VideoFileClip(file_path).subclip(start_time, end_time)
+            clip.write_gif(output_path)  # No ffmpeg codecs needed
             clip.close()
-        except Exception as e:
-            flash(f"Error trimming video: {e}")
-            return redirect(url_for("trimmer"))
-        
-        try:
-            os.remove(video_path)  # delete the uploaded file
-        except Exception as e:
-            print(f"Could not remove file {video_path}: {e}")
 
-        return send_file(trimmed_path, as_attachment=True)
+            return send_file(output_path, as_attachment=True, download_name=output_name)
 
-    return render_template("trimmer.html")
+        except Exception as e:
+            flash(f"Error: {str(e)}")
+
+    return render_template("video_to_gif.html")
+
+
+
+
+
 
 
 
@@ -618,63 +592,61 @@ def pdf_split():
 
 
 
-@app.route('/video_merge', methods=["GET", "POST"])
-def video_merge():
-    if "User_ID" not in session:
-        flash("First Register/Login","error")
-        return redirect(url_for('home'))    
 
+@app.route("/video_thumbnail", methods=["GET", "POST"])
+def video_thumbnail():
+    if "User_ID" not in session:
+        flash("First Register/Login", "error")
+        return redirect(url_for('home'))
 
     if request.method == "POST":
-        video1 = request.files.get("video1")
-        video2 = request.files.get("video2")
+        # Get video file
+        video = request.files.get("video")
+        if not video:
+            flash("No video selected")
+            return redirect(url_for("video_thumbnail"))
 
-        if not video1 and not video2:
-            flash("Both file should be selected")
-            return redirect(url_for('video_merge'))
-        
-        video1_name = secure_filename(video1.filename)
-        video2_name = secure_filename(video2.filename)
-        video1_path = os.path.join(app.config["UPLOAD_FOLDER"], video1_name)
-        video2_path = os.path.join(app.config["UPLOAD_FOLDER"], video2_name)
-        video1.save(video1_path)
-        video2.save(video2_path)
+        # Get the timestamp for the thumbnail (in seconds)
+        timestamp = request.form.get("time")
+        try:
+            timestamp = float(timestamp)  # Convert to float for seconds
+        except ValueError:
+            flash("Invalid timestamp. Please enter a valid number in seconds.")
+            return redirect(url_for("video_thumbnail"))
 
+        # Save the uploaded video
+        filename = secure_filename(video.filename)
+        file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        video.save(file_path)
 
-        if not video1_name.lower().endswith(".mp4") and not video2_name.lower().endswith(".mp4"):
-            flash("Selected files is not a Video")
-            os.remove(video1_path)
-            os.remove(video2_path)
-            return redirect(url_for('video_merge'))
-        
-
-        name1, _ = os.path.splitext(video1.filename)
-        name2, _ = os.path.splitext(video2.filename)
-        output_file_name = f"{name1}_{name2}_{uuid.uuid4().hex[:6]}.mp4"
-        output_file_path = os.path.join(app.config["MERGED_FOLDER"], output_file_name)
+        # Generate output filename for the thumbnail
+        output_name = f"{os.path.splitext(filename)[0]}_{uuid.uuid4().hex[:6]}.jpg"
+        output_path = os.path.join(app.config["OUTPUT_FOLDER"], output_name)
 
         try:
-            
-            vid1 = VideoFileClip(video1_path)
-            vid2 = VideoFileClip(video2_path)
+            # Load the video and extract the frame at the specified timestamp
+            clip = VideoFileClip(file_path)
 
-            merge = concatenate_videoclips([vid1, vid2])
-            merge.write_videofile(output_file_path, codec="libx264", audio_codec="aac", threads=False, logger=None)
+            # Check if timestamp is within the video's duration
+            if timestamp < 0 or timestamp > clip.duration:
+                flash(f"Timestamp must be between 0 and {clip.duration} seconds.")
+                return redirect(url_for("video_thumbnail"))
 
-            os.remove(video1_path)
-            os.remove(video2_path)
+            # Extract the frame at the specified timestamp
+            frame = clip.get_frame(timestamp)
+            img = Image.fromarray(frame)
+            img.save(output_path)
 
-            return send_file(
-                output_file_path,
-                as_attachment=True,
-                download_name=output_file_name
-            )
+            clip.close()
+
+            # Send the image file as a download
+            return send_file(output_path, as_attachment=True, download_name=output_name)
 
         except Exception as e:
-            flash(f"Error Occurred: {str(e)}")
-            return redirect(url_for('video_merge'))
+            flash(f"Error: {str(e)}")
+            return redirect(url_for("video_thumbnail"))
 
-    return render_template("video_merge.html")
+    return render_template("video_thumbnail.html")
 
 
 
